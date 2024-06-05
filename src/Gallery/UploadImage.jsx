@@ -40,9 +40,9 @@ const UploadImage = ({
             accept="image/*"
           />
         </div>
-        <div className="text-div">
+        <div className="text-div text-black">
           <textarea
-            className="text-input"
+            className="text-input text-black"
             placeholder="A little Recap ..."
             onChange={handleTextChange}
             name="text"
@@ -50,15 +50,24 @@ const UploadImage = ({
           ></textarea>
         </div>
       </div>
-      {isLoading &&
-        <div>
-          <p>Loading preview...</p>
-          <input type="range" name="loading" min="0" max="100" />
+      {isLoading && (
+        <div className="text-center">
+          <p>Just A Minute ...</p>
         </div>
-       }
-      <div className="button-container">
-        <button onClick={handleCancel}>Cancel</button>
-        <button onClick={uploadImage}>Upload</button>
+      )}
+      <div className="flex justify-end mt-1 space-x-2">
+        <button
+          className="p-1 bg-blue-400 rounded-full w-[30%]"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+        <button
+          className="p-1 bg-blue-400 rounded-full w-[30%]"
+          onClick={uploadImage}
+        >
+          Upload
+        </button>
       </div>
       <div></div>
     </form>

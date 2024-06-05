@@ -40,10 +40,6 @@ const Gallery = () => {
     setText(e.target.value.toString().trim());
   };
 
-  const randomSizeClass = () => {
-    const size = ["small_pin", "medium_pin", "large_pin"];
-    return size[Math.floor(Math.random() * size.length)];
-  };
 
   const userId = user?.sub;
   const uploadImage = async (e) => {
@@ -75,7 +71,6 @@ const Gallery = () => {
         {
           imageUrl: url,
           text: text,
-          size: randomSizeClass(),
         }
       );
 
@@ -178,7 +173,6 @@ const Gallery = () => {
               {
                 imageUrl: data[key].imageUrl,
                 text: data[key].text,
-                size: data[key].size,
               }
             );
 
@@ -199,11 +193,11 @@ const Gallery = () => {
       (snapshot) => {
         if (snapshot.exists()) {
           const imageData = snapshot.val();
-          //   console.log(imageData);
+            // console.log(imageData);
           const imagesList = Object.keys(imageData).map(
             (key) => imageData[key]
           );
-          //   console.log(imagesList);
+            // console.log(imagesList);
           setImages(imagesList);
         } else {
           console.log("No images available");
@@ -224,9 +218,9 @@ const Gallery = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen overflow-y-hidden ">
       {/* <Header/> */}
-      <h1>MediCapture</h1>
+      <h1 className="text-4xl font-bold text-center mt-2">MediCapture</h1>
       <div
         style={{
           display: "flex",
@@ -236,14 +230,14 @@ const Gallery = () => {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ marginLeft: "100px" }}>
+        <div className="pl-20 text-2xl">
           <Profile />
         </div>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
-            color: "purple",
+            color: "black",
             justifyContent: "center",
             justifyContent: "space-evenly",
             fontSize: "",
@@ -261,6 +255,8 @@ const Gallery = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              padding: "1rem",
+              fontSize: "1rem",
             }}
           >
             <Home onClick={getAllClick} size={32} />
@@ -271,6 +267,7 @@ const Gallery = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              padding: "1rem",
             }}
           >
             <Star
@@ -281,12 +278,12 @@ const Gallery = () => {
             <p>Favourite</p>
           </div>
           {/* <Eye size={32} /> */}
-          <div>
+          <div className="p-1 bg-blue-400 rounded-full w-[30%] text-center">
             <LogoutButton />
           </div>
         </div>
       </div>
-      <div className="gallery-container">
+      <div className="flex gap-4 justify-around w-full ">
         <UploadImage
           handleImageChange={handleImageChange}
           handleTextChange={handleTextChange}

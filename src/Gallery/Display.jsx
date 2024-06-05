@@ -31,7 +31,7 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
   };
 
   return (
-    <div className="image-display">
+    <div className="bg-slate-300 bg-opacity-20 p-2 rounded-2xl grid grid-cols-4 w-4/6 h-screen scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-500 scrollbar-track-slate-300 overflow-y-scroll">
       <Fade>
         {images.map((image, index) => (
           <div
@@ -40,14 +40,14 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
               color: "black",
               borderRadius: "20px",
               breakInside: "avoid",
-              border: "1px solid purple",
+              border: "1px solid #1a8efd",
               margin: "1rem",
             }}
             className="image-hover"
             onClick={() => handleImageClick(image, index)}
           >
             {/* <p>{image.size}</p> */}
-            <img className={image.size} src={image.imageUrl} />
+            <img className="h-96 w-full" src={image.imageUrl} />
             <div
               style={{
                 backgroundColor: "rgb(128, 128, 128, 0.1)",
@@ -57,7 +57,7 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
                 display: "flex",
                 justifyContent: "space-around",
                 padding: "0.5rem",
-                color: "purple",
+                color: "#1a8efd",
               }}
             >
               <div
@@ -91,7 +91,7 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
             {selectedImage?.text && (
               <div
                 style={{
-                  backgroundColor: "plum",
+                  backgroundColor: "#1a8efd",
                   width: "100%",
                   marginTop: "1rem",
                   marginBottom: "1rem",
@@ -103,7 +103,12 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
                 <p style={{ paddingLeft: "1rem" }}>{selectedImage.text}</p>
               </div>
             )}
-            <button onClick={handleModalClose}>Close</button>
+            <button
+              className="p-1 bg-blue-400 rounded-full w-[30%]"
+              onClick={handleModalClose}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
