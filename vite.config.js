@@ -11,4 +11,9 @@ export default defineConfig({
       REACT_APP_AUTH0_CLIENT_ID: true,
     },
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 })

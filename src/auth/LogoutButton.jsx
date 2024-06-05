@@ -7,7 +7,7 @@ const LogoutButton = () => {
     return(
         isAuthenticated && (
             
-            <button className="bg-red-500" onClick={() =>logout()} className='button2'>
+            <button onClick={() =>logout()} className='button2'>
                 <b>Log out</b>
             </button>
         )
