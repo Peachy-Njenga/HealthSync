@@ -1,0 +1,67 @@
+/* Appointment Details Styles */
+
+.appointment-details-section {
+  /* Background color for the appointment details section */
+  background-color: #f7f7f7;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-details-section h1 {
+  /* Title style for the appointment details section */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.appointment-details-section h2 {
+  /* Subtitle style for the appointment details section */
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.details-container {
+  /* Container for the appointment details content */
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.details-content {
+  /* Container for the appointment details */
+  padding: 20px;
+}
+
+.details-content p {
+  /* Style for the appointment details paragraphs */
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.details-content p:last-child {
+  /* Remove margin-bottom from the last paragraph */
+  margin-bottom: 0;
+}
+
+.legal-footer {
+  /* Footer style for the appointment details section */
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #666;
+}
+
+.legal-footer p {
+  /* Style for the footer paragraphs */
+  font-size: 14px;
+  margin-bottom: 0;
+}
