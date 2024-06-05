@@ -12,7 +12,7 @@ const LandingPage = () => {
         !isAuthenticated && (
             <div>
               <img src={Auth3} className="App-logo" alt="logo" />
-                <h2>Hi welcome to Auth0 Landing Page</h2>
+                <h2 className="">Hi welcome to Auth0 Landing Page</h2>
                 <h2><b>Get Started.</b></h2>
            </div>
         )
