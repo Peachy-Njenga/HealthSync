@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  background: linear-gradient(to right, #ecf2ff, #fbfcff);
+  /* background: linear-gradient(to right, #ffffff, #0A1818); */
 }
 /* Text section */
 .text-section {

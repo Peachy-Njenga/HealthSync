@@ -123,10 +123,7 @@ const Gallery = () => {
   };
 
   const handleDelete = async (imgUrl) => {
-    console.log("I am deleting");
-    console.log(imgUrl);
     const firebaseRef = dbRef(db, `images/${userId}/`); // Reference to the images node
-    console.log(firebaseRef);
 
     try {
       const snapshot = await get(firebaseRef); // Get all data from "images" node

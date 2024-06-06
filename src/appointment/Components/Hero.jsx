@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Doctor from "../Assets/doctor-picture.jpeg";
+import coding from "../Assets/CodingGif.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -33,25 +34,30 @@ function Hero() {
   }, []);
 
   return (
-    <div className="section-container">
-      <div className="hero-section">
+    <div className="bg-black">
+      <div className="hero-section bg-gradient-to-r from-white to-[#0A1818] to-60%">
         <div className="text-section">
-          <p className="text-headline">❤️ Health comes first</p>
-          <h2 className="text-title">
-            Find your Doctor and make an Appointments
-          </h2>
+          <p className="text-headline">❤️ Ladies in Coding</p>
+          <h2 className="">Ladies in Coding Bootcamp</h2>
           <p className="text-descritpion">
-            Talk to online doctors and get medical advice, online prescriptions,
-            refills and medical notes within minutes. On-demand healthcare
-            services at your fingertips.
+            Four intense weeks immersed in a ladies' coding bootcamp equipped us
+            with the fundamentals of programming. We tackled HTML, CSS, and
+            React, gaining a strong foundation in web development. The
+            curriculum wasn't all code, though. We delved into user
+            authentication and API integrations, preparing us for the
+            complexities of modern applications. To solidify our learnings, we
+            capped off the program by developing our own projects, putting our
+            newfound skills into practice. This experience, guided by industry
+            professionals, was an invaluable springboard into the world of
+            coding.
           </p>
-          <button
+          {/* <button
             className="text-appointment-btn"
             type="button"
             onClick={handleBookAppointmentClick}
           >
             <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
-          </button>
+          </button> */}
           <div className="text-stats">
             <div className="text-stats-container">
               {/*<p>145k+</p> */}
@@ -71,7 +77,7 @@ function Hero() {
         </div>
 
         <div className="hero-image-section">
-          <img className="hero-image1" src={Doctor} alt="Doctor" />
+          <img className="hero-image1" src={coding} alt="Doctor" />
         </div>
       </div>
 
