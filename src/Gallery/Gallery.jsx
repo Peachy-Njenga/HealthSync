@@ -1,13 +1,12 @@
-import React from 'react'
-import LogoutButton from '../auth/LogoutButton'
-
+import React from "react";
+import LogoutButton from "../auth/LogoutButton";
 
 const Gallery = () => {
   return (
     <div>
-     <LogoutButton />
+      <LogoutButton />
     </div>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

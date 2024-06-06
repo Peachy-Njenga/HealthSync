@@ -11,6 +11,8 @@ import Appointment from "./appointment/Pages/Appointment";
 import Register from "./appointment/Components/Register";
 import AppointmentDetails from "./appointment/Components/AppointmentDetails";
 import NotFound from "./appointment/Pages/NotFound";
+import MainApp from "./notes/MainApp.jsx";
+// import './notes/MainApp.css'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +27,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/appointment-details" element={<AppointmentDetails />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/notes" element={<MainApp />} />
       </Routes>
     </>
   );
