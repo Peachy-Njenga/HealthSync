@@ -14,13 +14,12 @@ import useEmblaCarousel from 'embla-carousel-react'
 import AutoScroll from "embla-carousel-auto-scroll";
 
 function About() {
-  const [emblaRef] = useEmblaCarousel({ loop: true },[AutoScroll()]);
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [AutoScroll()]);
 
   return (
 
     <div className="py-5 px-10" id="about">
       <div className="flex justify-center pb-3">
-        <span className="text-4xl font-bold text-center ">About The Program</span>
       </div>
 
       <div className="flex gap-20 mt-5">
@@ -29,6 +28,7 @@ function About() {
         </div>
 
         <div className="flex flex-col gap-4">
+          <span className="text-4xl font-bold text-center pb-3">About The Program</span>
           <p className="text-3xl font-semibold">An Intensive 4 Week Introduction to Web Development</p>
 
           <p>This is an immersive bootcamp organised by Palladium to empower ladies with various skills in the tech space:</p>
