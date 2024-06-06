@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import "./Gallery/App.css";
 import { Routes, Route } from "react-router-dom";
 import Login from "./auth/Login";
 // import Gallery from "./Gallery/Gallery";
@@ -12,7 +13,7 @@ import Register from "./appointment/Components/Register";
 import AppointmentDetails from "./appointment/Components/AppointmentDetails";
 import NotFound from "./appointment/Pages/NotFound";
 import MainApp from "./notes/MainApp.jsx";
-// import './notes/MainApp.css'
+import Gallery from "./Gallery/Gallery";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/legal" element={<Legal />} />
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/register" element={<Register />} />
