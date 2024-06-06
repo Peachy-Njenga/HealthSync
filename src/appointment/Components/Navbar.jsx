@@ -18,6 +18,10 @@ function Navbar() {
     setNav(!nav);
   };
 
+  const handleNotesClick = () => {
+    navigate("/notes");
+  };
+
   const handleChatBtnClick = () => {
     if (!isButtonDisabled) {
       setIsButtonDisabled(true);
@@ -52,6 +56,11 @@ function Navbar() {
           <a href="#about" className="navbar-links">
             About
           </a>
+        </li>
+        <li>
+          <button className="navbar-links" onClick={() => handleNotesClick}>
+            Notes
+          </button>
         </li>
       </ul>
 

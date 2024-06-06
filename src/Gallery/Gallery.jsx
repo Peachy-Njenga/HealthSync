@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import UploadImage from "./UploadImage";
 import Display from "./Display";
@@ -217,6 +218,7 @@ const Gallery = () => {
   };
 
   return (
+
     <div className="h-screen overflow-y-hidden ">
       <h1 className="text-4xl font-bold text-center mt-2">MediCapture</h1>
      

@@ -12,6 +12,7 @@ import Appointment from "./appointment/Pages/Appointment";
 import Register from "./appointment/Components/Register";
 import AppointmentDetails from "./appointment/Components/AppointmentDetails";
 import NotFound from "./appointment/Pages/NotFound";
+import MainApp from "./notes/MainApp.jsx";
 import Gallery from "./Gallery/Gallery";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/appointment-details" element={<AppointmentDetails />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/notes" element={<MainApp />} />
       </Routes>
     </>
   );
