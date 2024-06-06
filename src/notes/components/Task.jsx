@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import ProgressBar from './ProgressBar'; // Import the ProgressBar component
-import { Check, ListTodo, Pencil, Plus } from 'lucide-react';
-import { TERipple } from 'tw-elements-react';
+import { Check, ListTodo, Pencil, Plus, ThumbsUp, Trash2 } from 'lucide-react';
+import {
+    TEDropdown,
+    TEDropdownToggle,
+    TEDropdownMenu,
+    TEDropdownItem,
+    TERipple,
+} from "tw-elements-react";
 
 const Task = ({ task, notes, approveTask, deleteTask, addNote, updateTask, updateNote, toggleNoteCompletion }) => {
     // State for managing task editing mode and text
@@ -71,33 +77,59 @@ const Task = ({ task, notes, approveTask, deleteTask, addNote, updateTask, updat
     };
 
     return (
-        <div className='border border-b p-4 rounded-md w-full bg-white'>
-            
-            {isEditingTask ? (
-                <>
-                    <input
-                        type="text"
-                        value={taskText}
-                        onChange={handleTaskChange}
-                    />
-                    <span>{taskText.length}/{TASK_CHAR_LIMIT}</span>
-                    <button onClick={saveTask}
-                        className='bg-white p-1 rounded-sm w-20 border-blue-500 border '>Save</button>
-                </>
-            ) : (
-                <>
-                    <h3 className='flex justify-start'>{task.text}</h3>
-                    <button onClick={() => setIsEditingTask(true)}
-                        className='bg-white p-1 rounded-sm w-20 border-blue-500 border '>Edit</button>
-                </>
-            )}
-            <button
-                className='bg-white p-1 rounded-sm w-20 border-blue-500 border m-2'
-                onClick={() => approveTask(task.id)} disabled={!allNotesCompleted}>
-                {task.approved ? 'Unapprove' : 'Approve'}
-            </button>
-            <button onClick={() => deleteTask(task.id)}
-                className='bg-white p-1 rounded-sm w-20 border-blue-500 border'>Delete</button>
+        <div className='border border-b p-3 rounded-md  bg-white'>
+            <div>
+
+                {isEditingTask ? (
+                    <>
+                        <input
+                            type="text"
+                            value={taskText}
+                            onChange={handleTaskChange}
+                        />
+                        <span>{taskText.length}/{TASK_CHAR_LIMIT}</span>
+                        <button onClick={saveTask}
+                            className='bg-white p-1 rounded-sm w-20  border '>Save</button>
+                    </>
+                ) : (
+                    <>
+                        <div className='flex justify-between w-full h-full  p-2'>
+                            <article className='flex-1  p-2 overflow-hidden'>
+                                <p className='break-words'>{task.text}</p>
+                            </article>
+
+                            <div className='flex flex-col items-end flex-shrink-0  p-2'>
+                                <button onClick={() => setIsEditingTask(true)}
+                                    className='bg-white p-1 rounded-sm w-fit border-blue-500 border mb-2'>
+                                    <Pencil size={16} strokeWidth={1.5} />
+                                </button>
+
+                                <button
+                                    className='bg-white p-1 rounded-sm w-fit border-blue-500 border mb-2'
+                                    onClick={() => approveTask(task.id)} disabled={!allNotesCompleted}>
+                                    {task.approved ? <ThumbsDown size={20} color="#000000" strokeWidth={1.75} /> : <ThumbsUp size={16} color="#000000" strokeWidth={1.5} />}
+                                </button>
+
+                                <button onClick={() => deleteTask(task.id)}
+                                    className='bg-white p-1 rounded-sm w-fit border-blue-500 border'>
+                                    <Trash2 size={16} color="#000000" strokeWidth={1.5} />
+                                </button>
+                            </div>
+                        </div>
+
+                    </>
+                )}
+                {/* <div className='flex flex-col gap-1 mt-1  items-end w-full '>
+
+                <button
+                    className='bg-white p-1 rounded-sm w-fit border-blue-500 border'
+                    onClick={() => approveTask(task.id)} disabled={!allNotesCompleted}>
+                    {task.approved ? <ThumbsDown size={20} color="#000000" strokeWidth={1.75} /> : <ThumbsUp size={16} color="#000000" strokeWidth={1.5} />}
+                </button>
+                <button onClick={() => deleteTask(task.id)}
+                    className='bg-white p-1 rounded-sm w-fit border-blue-500 border'><Trash2 size={16} color="#000000" strokeWidth={1.5} /></button>
+                    </div> */}
+            </div>
 
             {/* Add the progress bar here */}
             <ProgressBar completionPercentage={completionPercentage} />
