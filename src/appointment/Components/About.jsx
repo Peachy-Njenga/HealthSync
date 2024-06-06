@@ -2,43 +2,77 @@ import React from "react";
 import Doctor from "../Assets/doctor-group.jpeg";
 import SolutionStep from "./SolutionStep";
 import "../Styles/About.css";
+import training from '../Assets/training.png';
+import html from '../Assets/html.png';
+import tailwind from '../Assets/tailwind.png';
+import js from '../Assets/js.png';
+import react from '../Assets/react.png';
+import firebase from '../Assets/firebase.png';
+import auth0 from '../Assets/auth0.png';
+import { Handshake, Server, SquareCode } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react'
+import AutoScroll from "embla-carousel-auto-scroll";
 
 function About() {
+  const [emblaRef] = useEmblaCarousel({ loop: true },[AutoScroll()]);
+
   return (
-    <div className="about-section" id="about">
-      <div className="about-image-content">
-        <img src={Doctor} alt="Doctor Group" className="about-image1" />
+
+    <div className="py-5 px-10" id="about">
+      <div className="flex justify-center pb-3">
+        <span className="text-4xl font-bold text-center ">About The Program</span>
       </div>
 
-      <div className="about-text-content">
-        <h3 className="about-title">
-          <span>About Us</span>
-        </h3>
-        <p className="about-description">
-          Welcome to Health Plus, your trusted partner for accessible and
-          personalized healthcare. Our expert doctors offer online consultations
-          and specialized services, prioritizing your well-being. Join us on
-          this journey towards a healthier you.
-        </p>
+      <div className="flex gap-20 mt-5">
+        <div>
+          <img src={training} alt="Training" />
+        </div>
 
-        <h4 className="about-text-title">Your Solutions</h4>
+        <div className="flex flex-col gap-4">
+          <p className="text-3xl font-semibold">An Intensive 4 Week Introduction to Web Development</p>
 
-        <SolutionStep
-          title="Choose a Specialist"
-          description="Find your perfect specialist and book with ease at Health Plus. Expert doctors prioritize your health, offering tailored care."
-        />
+          <p>This is an immersive bootcamp organised by Palladium to empower ladies with various skills in the tech space:</p>
 
-        <SolutionStep
-          title="Make a Schedule"
-          description="Choose the date and time that suits you best, and let our dedicated team of medical professionals ensure your well-being with personalized care."
-        />
+          <div className="flex flex-col gap-10 mt-5">
+            <div className="flex gap-2 items-center">
+              <div className="bg-blue-300 p-2 rounded-full">
+                <SquareCode size={20} strokeWidth={1.5} />
+              </div>
+              <p>Basic Programming skills in Frontend Development: HTML, CSS, Javascript and React</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <div className="bg-blue-300 p-2 rounded-full">
+                <Server size={20} strokeWidth={1.5} />
+              </div>
+              <p>Use of Storage APIs and authentication using Auth0</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <div className="bg-blue-300 p-2 rounded-full">
+                <Handshake size={20} strokeWidth={1.5} />
+              </div>
+              <p>Problem solving skills, teamwork and collaboration</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <SolutionStep
-          title="Get Your Solutions"
-          description="Our experienced doctors and specialists are here to provide expert advice and personalized treatment plans, helping you achieve your best possible health."
-        />
+      <div>
+        <div className="flex justify-center mt-10">
+          <span className="text-4xl font-bold text-center ">What was covered </span>
+        </div>
+        <div className="embla p-5  " ref={emblaRef}>
+          <div className="embla__container flex gap-10">
+            <img className="embla__slide" src={html} alt="" />
+            <img className="embla__slide" src={tailwind} alt="" />
+            <img className="embla__slide" src={js} alt="" />
+            <img className="embla__slide" src={react} alt="" />
+            <img className="embla__slide" src={firebase} alt="" />
+            <img className="embla__slide" src={auth0} alt="" />
+          </div>
+        </div>
       </div>
     </div>
+
   );
 }
 

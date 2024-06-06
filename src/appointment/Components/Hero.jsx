@@ -40,16 +40,7 @@ function Hero() {
           <p className="text-headline">❤️ Ladies in Coding</p>
           <h2 className="">Ladies in Coding Bootcamp</h2>
           <p className="text-descritpion">
-            Four intense weeks immersed in a ladies' coding bootcamp equipped us
-            with the fundamentals of programming. We tackled HTML, CSS, and
-            React, gaining a strong foundation in web development. The
-            curriculum wasn't all code, though. We delved into user
-            authentication and API integrations, preparing us for the
-            complexities of modern applications. To solidify our learnings, we
-            capped off the program by developing our own projects, putting our
-            newfound skills into practice. This experience, guided by industry
-            professionals, was an invaluable springboard into the world of
-            coding.
+            
           </p>
           {/* <button
             className="text-appointment-btn"

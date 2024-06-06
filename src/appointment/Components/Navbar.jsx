@@ -8,6 +8,8 @@ import {
 import "../Styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import girlCode from "../Assets/girl-code.png";
+import { LogIn } from "lucide-react";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
@@ -33,13 +35,10 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar-section">
-      <h1 className="navbar-title">
-        <Link to="/">
-          Health <span className="navbar-sign">+</span>
-        </Link>
-      </h1>
-
+    <div className="flex h-20 justify-between p-2 items-center">
+      <div className="h-full ">
+        <img src={girlCode} alt="icon" className=" h-full"/>
+      </div>
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
@@ -48,29 +47,25 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <a href="#services" className="navbar-links">
-            Services
-          </a>
-        </li>
-        <li>
           <a href="#about" className="navbar-links">
             About
           </a>
         </li>
         <li>
-          <button className="navbar-links" onClick={() => handleNotesClick}>
-            Notes
-          </button>
+          <a href="#projects" className="navbar-links">
+            Projects
+          </a>
         </li>
+        
       </ul>
 
       <button
-        className="navbar-btn"
+        className=" bg-blue-500 w-fit h-fit p-3 rounded-lg flex items-center gap-2"
         type="button"
         disabled={isButtonDisabled}
         onClick={handleChatBtnClick}
       >
-        Log in
+        <LogIn size={20} strokeWidth={1.75} />Log in
       </button>
 
       {/* Mobile */}
