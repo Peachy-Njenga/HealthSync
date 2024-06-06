@@ -1,56 +1,71 @@
 import React from "react";
 import InformationCard from "./InformationCard";
 import {
-  faHeartPulse,
-  faTruckMedical,
-  faTooth,
+  faCalendarCheck,
+  faCamera,
+  faListCheck
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Info.css";
 
 function Info() {
+  const handleGalleryClick = () => {
+    console.log("Gallery");
+    navigate("/gallery");
+  };
+
+  const handleBookAppointmentClick = () => {
+    console.log("Book Appointment");
+    navigate("/appointment");
+  };
+
+  const handlenotesClick = () => {
+    navigate("/notes");
+  };
   return (
     <div className="info-section" id="services">
       <div className="info-title-content">
         <h3 className="info-title">
-          <span>What We Do</span>
+          <span>Projects Done</span>
         </h3>
         <p className="info-description">
-          We bring healthcare to your convenience, offering a comprehensive
-          range of on-demand medical services tailored to your needs. Our
-          platform allows you to connect with experienced online doctors who
-          provide expert medical advice, issue online prescriptions, and offer
-          quick refills whenever you require them.
+          Our bootcamp journey equipped us with valuable development skills,
+          which we applied to three distinct projects. We built a booking appointment
+          for on-demand doctor consultations, prescriptions, and notes. For
+          doctors, we created MediCapture to streamline patient profiles and
+          notes. Rounding out our projects, a task and note management app
+          offers a central hub for daily organization.
         </p>
       </div>
 
       <div className="info-cards-content">
         <InformationCard
-          title="Emergency Care"
-          description="Our Emergency Care service is designed to be your reliable support
-            in critical situations. Whether it's a sudden illness, injury, or
-            any medical concern that requires immediate attention, our team of
-            dedicated healthcare professionals is available 24/7 to provide
-            prompt and efficient care."
-          icon={faTruckMedical}
+          title="Book Appointment"
+          description=" Find your Doctor and make an Appointments.Talk to online doctors and get medical advice, online prescriptions,
+            refills and medical notes within minutes. On-demand healthcare
+            services at your fingertips."
+          icon={faCalendarCheck}
+          text="Book Appointment"
+          event={handleBookAppointmentClick}
         />
 
         <InformationCard
-          title="Heart Disease"
-          description="Our team of experienced cardiologists and medical experts use
-            state-of-the-art technology to assess your cardiovascular health and
-            design personalized treatment plans. From comprehensive screenings
-            to advanced interventions, we are committed to helping you maintain
-            a healthy heart and lead a fulfilling life."
-          icon={faHeartPulse}
+          title="MediCapture"
+          description=" Streamline patient management for doctors.
+           It allows them to create profiles for their patients,
+            including personalized notes. 
+            The app then conveniently displays all these patient profiles in a clear grid format, 
+            "
+          icon={faCamera}
+          text="Open Gallery"
+          event={handleGalleryClick}
         />
 
         <InformationCard
-          title="Dental Care"
-          description="Smile with confidence as our Dental Care services cater to all your
-            oral health needs. Our skilled dentists provide a wide range of
-            treatments, from routine check-ups and cleanings to cosmetic
-            procedures and restorative treatments."
-          icon={faTooth}
+          title="Manage notes and Tasks"
+          description=" It allows you to create and manage both notes and tasks, keeping all your important information in a central and accessible location.Allows you to check tasks as done for a more effective day."
+          icon={faListCheck}
+          text="View Notes"
+          event={handlenotesClick}
         />
       </div>
     </div>
