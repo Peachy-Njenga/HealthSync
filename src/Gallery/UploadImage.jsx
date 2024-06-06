@@ -4,10 +4,13 @@ import React from "react";
 const UploadImage = ({
   handleImageChange,
   handleTextChange,
+  handleFileChange,
+  handleFirstNameChange,
+  handleLastNameChange,
   uploadImage,
   selectedImage,
   isLoading,
-  handleCancel
+  handleCancel,
 }) => {
   return (
     <form action="">
@@ -40,10 +43,38 @@ const UploadImage = ({
             accept="image/*"
           />
         </div>
+        <div className="pb-4">
+          <label htmlFor="Name">FirstName :</label>
+          <input
+            className="bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-3/4 resize-none outline-none"
+            type="text"
+            id="Name"
+            name="Name"
+            onChange={handleFirstNameChange}
+          />
+        </div>
+        <div className="pb-4">
+          <label htmlFor="Name">LastName :</label>
+          <input
+            className="bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-3/4 resize-none outline-none"
+            type="text"
+            id="Name"
+            name="Name"
+            onChange={handleLastNameChange}
+          />
+        </div>
+
+        <div className="pb-4">
+          <input
+            className="bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-3/4 resize-none outline-none"
+            type="file"
+            onChange={handleFileChange}
+          />
+        </div>
         <div className="text-div text-black">
           <textarea
-            className="text-input text-black"
-            placeholder="A little Recap ..."
+            className=" bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-3/4 resize-none outline-none"
+            placeholder="Add a Note ..."
             onChange={handleTextChange}
             name="text"
             id="text"
@@ -69,7 +100,6 @@ const UploadImage = ({
           Upload
         </button>
       </div>
-      <div></div>
     </form>
   );
 };

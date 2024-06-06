@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Fade } from "react-awesome-reveal";
-import { Trash2, Share2, Star } from "lucide-react";
-import { getDatabase, ref as dbRef, get, remove } from "firebase/database";
+import { Trash2, File, Star, Plus } from "lucide-react";
+import { getDatabase, ref as dbRef, get, remove, set } from "firebase/database";
 
 const Display = ({ images, handleDelete, handleFavorite }) => {
   const db = getDatabase();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+  const [isAddFile, setIsAddFile] = useState(false);
 
   const handleImageClick = (image, index) => {
     setSelectedImage(image);
@@ -30,6 +31,10 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
     handleFavorite(imgUrl);
   };
 
+  const handleAddFile = (e, imgUrl) => {
+    setIsAddFile(true);
+  };
+
   return (
     <div className="bg-slate-300 bg-opacity-20 p-2 rounded-2xl grid grid-cols-4 w-4/6 h-screen scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-500 scrollbar-track-slate-300 overflow-y-scroll">
       <Fade>
@@ -47,7 +52,7 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
             onClick={() => handleImageClick(image, index)}
           >
             {/* <p>{image.size}</p> */}
-            <img className="h-96 w-full" src={image.imageUrl} />
+            <img className="object-cover" src={image.imageUrl} />
             <div
               style={{
                 backgroundColor: "rgb(128, 128, 128, 0.1)",
@@ -88,10 +93,33 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
               alt={selectedImage?.text}
               style={{ width: "100%", height: "60%" }}
             />
+            <div className="flex space-x-2 text-xl pt-4 font-bold">
+              <p>{selectedImage.firstName}</p>
+              <p>{selectedImage.lastName}</p>
+            </div>
+            <a className="" href={selectedImage.fileUrl}>
+              <File />
+            </a>
+            <div className="flex space-x-2 font-bold" onClick={handleAddFile}>
+              <p>Add File</p>
+              <Plus />
+            </div>
+            {isAddFile && (
+              <div>
+                <input
+                  className="bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-12 resize-none outline-none"
+                  type="file"
+                  onChange={handleAddFile}
+                />
+                <button className="p-1 mt-2 bg-blue-400 rounded-full w-[20%]">
+                  Add
+                </button>
+              </div>
+            )}
             {selectedImage?.text && (
               <div
                 style={{
-                  backgroundColor: "#1a8efd",
+                  backgroundColor: "white",
                   width: "100%",
                   marginTop: "1rem",
                   marginBottom: "1rem",

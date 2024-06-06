@@ -4,7 +4,6 @@ const ProgressBar = ({ completionPercentage }) => {
     const containerStyle = {
         height: '2px',
         width: '100%',
-        // backgroundColor: '#ffffff',
         borderRadius: '5px',
         margin: '10px 0'
     };

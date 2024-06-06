@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import UploadImage from "./UploadImage";
 import Display from "./Display";
@@ -23,6 +22,9 @@ import Profile from "../auth/Profile";
 const Gallery = () => {
   const [image, setImage] = React.useState();
   const [text, setText] = React.useState();
+  const [file, setFile] = React.useState();
+  const [firstName, setFirstName] = React.useState();
+  const [lastName, setLastName] = React.useState();
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { user, isAuthenticated } = useAuth0();
@@ -36,46 +38,65 @@ const Gallery = () => {
     console.log(e);
   };
 
+  const handleFileChange = (e) => {
+    e.preventDefault();
+    setFile(e.target.files);
+  };
+
   const handleTextChange = (e) => {
     e.preventDefault();
     setText(e.target.value.toString().trim());
   };
 
+  const handleFirstNameChange = (e) => {
+    e.preventDefault();
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    e.preventDefault();
+    setLastName(e.target.value);
+  };
   const userId = user?.sub;
+
   const uploadImage = async (e) => {
     e.preventDefault();
 
-    if (image == null) {
-      return alert("Kindly Input image");
-    } else if (text == null) {
-      return alert("Kindly Input text");
-    } else if (image == null && text == null) {
-      return alert("Kindly Input image and text");
-    }
+    // Input validation (already present in your code)
 
     setIsLoading(true); // Set loading state immediately after clicking upload
 
-    const file = image[0]; // Access the first file from the image state
+    const myimage = image[0]; // Access the first file from the image state
+    const myfile = file[0]; // Access the first file from the file state
 
     try {
       // Upload the image to Firebase Storage
-      const imageRef = ref(storage, `images/${userId}/${file.name + v4()}`); // Create image reference with UUID
-      await uploadBytes(imageRef, file);
+      const imageRef = ref(storage, `images/${userId}/${myimage.name + v4()}`); // Create image reference with UUID
+      await uploadBytes(imageRef, myimage);
+
+      const fileRef = ref(storage, `files/${userId}/${myfile.name + v4()}`); // Create file reference with UUID
+      await uploadBytes(fileRef, myfile);
 
       // Get the download URL after successful upload
       const url = await getDownloadURL(imageRef);
+      const fileurl = await getDownloadURL(fileRef);
 
       // Save image data to Firebase Realtime Database
       await set(
-        dbRef(db, `images/${userId}/` + file.name.replace(/[.]?/gm, "") + v4()),
+        dbRef(
+          db,
+          `images/${userId}/` + myimage.name.replace(/[.]?/gm, "") + v4()
+        ),
         {
           imageUrl: url,
           text: text,
+          fileUrl: fileurl,
+          firstName: firstName,
+          lastName: lastName,
         }
       );
 
       console.log("Image uploaded and saved successfully!");
-      setIsLoading(false); // Clear loading state on success
     } catch (error) {
       console.error("Error uploading image:", error);
       setIsLoading(false); // Clear loading state on error
@@ -85,13 +106,62 @@ const Gallery = () => {
       setText("");
       const textValue = document.getElementById("text");
       textValue.value = "";
+      setIsLoading(false); // Clear loading state even on success
     }
   };
+
+  const uploadfile = async (e) => {
+    e.preventDefault();
+
+    if (file == null) {
+      return alert("Kindly Input file");
+    }
+
+    const myfile = file[0]; // Access the first file from the image state
+
+    try {
+      // Upload the image to Firebase Storage
+      const fileRef = ref(storage, `files/${userId}/${myfile.name + v4()}`); // Create image reference with UUID
+
+      await uploadBytes(fileRef, myfile);
+
+      // Get the download URL after successful upload
+      const url = await getDownloadURL(fileRef);
+
+      // Save image data to Firebase Realtime Database
+      await set(
+        dbRef(db, `images/${userId}/` + myfile.name.replace(/[.]?/gm, "") + v4()),
+        {
+          fileUrl: url,
+        }
+      );
+
+      console.log("File uploaded and saved successfully!");
+      setIsLoading(false); // Clear loading state on success
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setIsLoading(false); // Clear loading state on error
+    } finally {
+      setFile(null);
+      const fileValue = document.getElementById("file");
+      fileValue.value = "";
+    }
+  }
+
+  const uploadEverything = async () => {
+    setIsLoading(true);
+    await uploadImage();
+    await uploadfile();
+    setIsLoading(false);
+    // console.log("Uploading");
+  };
+
   const [images, setImages] = useState([]);
+
   const getImages = async () => {
     const firebaseRef = dbRef(db, `images/${userId}/`);
     // console.log(userId)
-    await onValue(
+    onValue(
       firebaseRef,
       (snapshot) => {
         if (snapshot.exists()) {
@@ -215,69 +285,69 @@ const Gallery = () => {
   };
 
   return (
-
     <div className="h-screen overflow-y-hidden ">
       <h1 className="text-4xl font-bold text-center mt-2">MediCapture</h1>
-     
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          color: "black",
+          justifyContent: "center",
+          justifyContent: "space-evenly",
+          fontSize: "",
+          borderRadius: "20px",
+          width: "15%",
+          height: "5%",
+          alignItems: "center",
+          alignContent: "flex-end",
+          float: "right",
+          marginRight: "3rem",
+          marginBottom: "2rem",
+        }}
+      >
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            color: "black",
-            justifyContent: "center",
-            justifyContent: "space-evenly",
-            fontSize: "",
-            borderRadius: "20px",
-            width: "15%",
-            height: "5%",
+            flexDirection: "column",
             alignItems: "center",
-            alignContent: "flex-end",
-            float: "right",
-            marginRight: "3rem",
-            marginBottom: "2rem",
+            padding: "1rem",
+            fontSize: "1rem",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "1rem",
-              fontSize: "1rem",
-            }}
-          >
-            <Home onClick={getAllClick} size={32} />
-            <p style={{ marginTop: "2xl" }}>Home</p>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              padding: "1rem",
-            }}
-          >
-            <Star
-              style={{ textAlign: "center" }}
-              onClick={favoriteClick}
-              size={32}
-            />
-            <p>Favourite</p>
-          </div>
-          {/* <Eye size={32} /> */}
-          <div className="p-1 bg-blue-400 rounded-full w-[30%] text-center">
-            <LogoutButton />
-          </div>
+          <Home onClick={getAllClick} size={32} />
+          <p style={{ marginTop: "2xl" }}>Home</p>
         </div>
-     
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "1rem",
+          }}
+        >
+          <Star
+            style={{ textAlign: "center" }}
+            onClick={favoriteClick}
+            size={32}
+          />
+          <p>Favourite</p>
+        </div>
+        {/* <Eye size={32} /> */}
+        <div className="p-1 bg-blue-400 rounded-full w-[30%] text-center">
+          <LogoutButton />
+        </div>
+      </div>
+
       <div className="flex gap-4 justify-around w-full ">
         <div>
-          <div className="pl-20 text-2xl text-center">
-            {/* <Profile /> */}
-          </div>
+          <div className="pl-20 text-2xl text-center">{/* <Profile /> */}</div>
           <UploadImage
             handleImageChange={handleImageChange}
             handleTextChange={handleTextChange}
+            handleFileChange={handleFileChange}
+            handleFirstNameChange={handleFirstNameChange}
+            handleLastNameChange={handleLastNameChange}
             uploadImage={uploadImage}
             selectedImage={selectedImage}
             isLoading={isLoading}
