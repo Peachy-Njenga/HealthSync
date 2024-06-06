@@ -11,7 +11,7 @@ import {
   remove,
 } from "firebase/database";
 import { storage } from "../firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes,listAll } from "firebase/storage";
 import { v4 } from "uuid";
 import { Home, Star, Eye, FileX } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -28,6 +28,7 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { user, isAuthenticated } = useAuth0();
+  const [fileUrl, setFileUrl] = useState();
 
   const db = getDatabase();
 
@@ -40,6 +41,7 @@ const Gallery = () => {
 
   const handleFileChange = (e) => {
     e.preventDefault();
+    // console.log("joan");
     setFile(e.target.files);
   };
 
@@ -112,29 +114,23 @@ const Gallery = () => {
 
   const uploadfile = async (e) => {
     e.preventDefault();
+    console.log("I am uploading file");
 
     if (file == null) {
       return alert("Kindly Input file");
     }
 
-    const myfile = file[0]; // Access the first file from the image state
+    const myfile1 = file[0]; // Access the first file from the image state
 
     try {
       // Upload the image to Firebase Storage
-      const fileRef = ref(storage, `files/${userId}/${myfile.name + v4()}`); // Create image reference with UUID
+      const fileRef = ref(storage, `files/${userId}/${myfile1.name}`); // Create image reference with UUID
 
-      await uploadBytes(fileRef, myfile);
+      await uploadBytes(fileRef, myfile1);
 
       // Get the download URL after successful upload
-      const url = await getDownloadURL(fileRef);
-
-      // Save image data to Firebase Realtime Database
-      await set(
-        dbRef(db, `images/${userId}/` + myfile.name.replace(/[.]?/gm, "") + v4()),
-        {
-          fileUrl: url,
-        }
-      );
+      const newfileurl = await getDownloadURL(fileRef);
+      setFileUrl(newfileurl);
 
       console.log("File uploaded and saved successfully!");
       setIsLoading(false); // Clear loading state on success
@@ -143,48 +139,53 @@ const Gallery = () => {
       setIsLoading(false); // Clear loading state on error
     } finally {
       setFile(null);
-      const fileValue = document.getElementById("file");
+      const fileValue = document.getElementById("newfile");
       fileValue.value = "";
     }
   }
 
-  const uploadEverything = async () => {
-    setIsLoading(true);
-    await uploadImage();
-    await uploadfile();
-    setIsLoading(false);
-    // console.log("Uploading");
+  const [files, setFiles] = useState([]);
+
+  
+  const getFiles = async () => {
+     const storageRef = ref(storage, `files/${userId}/`);
+
+    try {
+      const res = await listAll(storageRef);
+      const fileURLs = await Promise.all(
+        res.items.map((item) => getDownloadURL(item))
+      );
+      setFiles(fileURLs);
+    } catch (error) {
+      console.error(error);
+    }
+    // Display files (implement your UI logic here)
   };
+
 
   const [images, setImages] = useState([]);
 
-  const getImages = async () => {
-    const firebaseRef = dbRef(db, `images/${userId}/`);
-    // console.log(userId)
-    onValue(
-      firebaseRef,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          const imageData = snapshot.val();
-          //   console.log(imageData);
-          const imagesList = Object.keys(imageData).map(
-            (key) => imageData[key]
-          );
-          //   console.log(imagesList);
-          setImages(imagesList);
-        } else {
-          console.log("No images available");
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  };
+ const getImages = async () => {
+   const firebaseRef = dbRef(db, `images/${userId}/`);
+
+   try {
+     const snapshot = await get(firebaseRef);
+     if (snapshot.exists()) {
+       const imageData = snapshot.val();
+       const imagesList = Object.keys(imageData).map((key) => imageData[key]);
+       setImages(imagesList);
+     } else {
+       console.log("No images available");
+     }
+   } catch (error) {
+     console.error(error);
+   }
+ };
 
   useEffect(() => {
-    getImages();
-  }, []);
+    // getImages();
+    getFiles();
+  }, [files]);
 
   const handleCancel = () => {
     setImage(null);
@@ -360,6 +361,10 @@ const Gallery = () => {
           handleDelete={handleDelete}
           handleFavorite={handleFavorite}
           getFavorites={getFavorites}
+          getFiles={getFiles}
+          uploadfile={uploadfile}
+          handleFileChange={handleFileChange}
+          files={files}
         />
       </div>
     </div>
