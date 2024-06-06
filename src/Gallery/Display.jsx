@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Trash2, File, Star, Plus } from "lucide-react";
 import { getDatabase, ref as dbRef, get, remove, set } from "firebase/database";
 
-const Display = ({ images, handleDelete, handleFavorite }) => {
+const Display = ({
+  images,
+  handleDelete,
+  handleFavorite,
+  handleFileChange,
+  getFiles,
+  uploadfile,
+  files,
+}) => {
   const db = getDatabase();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -13,6 +21,7 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
   const handleImageClick = (image, index) => {
     setSelectedImage(image);
     setIsModalOpen(true);
+    getFiles();
   };
 
   const handleModalClose = () => {
@@ -34,6 +43,10 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
   const handleAddFile = (e, imgUrl) => {
     setIsAddFile(true);
   };
+
+  // useEffect(() => {
+  //   getFiles();
+  // }, []);
 
   return (
     <div className="bg-slate-300 bg-opacity-20 p-2 rounded-2xl grid grid-cols-4 w-4/6 h-screen scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-500 scrollbar-track-slate-300 overflow-y-scroll">
@@ -97,21 +110,38 @@ const Display = ({ images, handleDelete, handleFavorite }) => {
               <p>{selectedImage.firstName}</p>
               <p>{selectedImage.lastName}</p>
             </div>
-            <a className="" href={selectedImage.fileUrl}>
-              <File />
-            </a>
-            <div className="flex space-x-2 font-bold" onClick={handleAddFile}>
-              <p>Add File</p>
-              <Plus />
+            <div className="flex p-2">
+              {/* <a className="pr-2" href={selectedImage.fileUrl}>
+                <File />
+              </a> */}
+              <div className="flex space-x-2 flex-wrap">
+                {files.map((file, index) => (
+                  <div key={index}>
+                    <a href={file} download={true}>
+                      <File />
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex space-x-2 font-bold" onClick={handleAddFile}>
+                <p>Add File</p>
+                <Plus />
+              </div>
             </div>
             {isAddFile && (
               <div>
                 <input
                   className="bg-[#8080801a] rounded-xl p-2 w-full border border-solid border-[#1a8efd] text-black h-12 resize-none outline-none"
                   type="file"
-                  onChange={handleAddFile}
+                  id="newfile"
+                  onChange={handleFileChange}
                 />
-                <button className="p-1 mt-2 bg-blue-400 rounded-full w-[20%]">
+                <button
+                  className="p-1 mt-2 bg-blue-400 rounded-full w-[20%]"
+                  onClick={uploadfile}
+                >
                   Add
                 </button>
               </div>
