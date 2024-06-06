@@ -32,6 +32,24 @@ body {
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.scroll-animation {
+  animation: scroll 15s linear infinite;
+}
+
+.scroll-animation:hover {
+  animation-play-state: paused;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -45,3 +63,17 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  /* height: 60px; */
+}
+.embla__slide {
+  flex: 0 0 20%;
+  min-width: 0;
+  /* margin-left: 20px; */
+}
+

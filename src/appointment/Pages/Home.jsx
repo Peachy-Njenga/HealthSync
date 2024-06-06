@@ -12,8 +12,8 @@ function Home() {
     <div className="home-section">
       <Navbar />
       <Hero />
-      <Info />
       <About />
+      <Info />
       <BookAppointment />
       <AppointmentDetails />
       {/* <Reviews /> */}
