@@ -6,8 +6,11 @@ import {
   faListCheck
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Info.css";
+import { useNavigate } from "react-router-dom";
 
 function Info() {
+  const navigate = useNavigate();
+
   const handleGalleryClick = () => {
     console.log("Gallery");
     navigate("/gallery");
@@ -45,7 +48,7 @@ function Info() {
             services at your fingertips."
           icon={faCalendarCheck}
           text="Book Appointment"
-          event={handleBookAppointmentClick}
+          event={()=>handleBookAppointmentClick()}
         />
 
         <InformationCard
@@ -57,7 +60,7 @@ function Info() {
             "
           icon={faCamera}
           text="Open Gallery"
-          event={handleGalleryClick}
+          event={()=>handleGalleryClick()}
         />
 
         <InformationCard
