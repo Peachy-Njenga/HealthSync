@@ -1,9 +1,9 @@
 .form-container {
-  padding: 32px;
+  /* padding: 32px; */
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background: linear-gradient(to right, #ecf2ff, #fbfcff);
+  /* background: linear-gradient(to right, #ecf2ff, #fbfcff); */
 }
 .form-title {
   font-family: "Poppins", sans-serif;
