@@ -40,7 +40,6 @@ const Gallery = () => {
     setText(e.target.value.toString().trim());
   };
 
-
   const userId = user?.sub;
   const uploadImage = async (e) => {
     e.preventDefault();
@@ -193,11 +192,11 @@ const Gallery = () => {
       (snapshot) => {
         if (snapshot.exists()) {
           const imageData = snapshot.val();
-            // console.log(imageData);
+          // console.log(imageData);
           const imagesList = Object.keys(imageData).map(
             (key) => imageData[key]
           );
-            // console.log(imagesList);
+          // console.log(imagesList);
           setImages(imagesList);
         } else {
           console.log("No images available");
@@ -219,20 +218,8 @@ const Gallery = () => {
 
   return (
     <div className="h-screen overflow-y-hidden ">
-      {/* <Header/> */}
       <h1 className="text-4xl font-bold text-center mt-2">MediCapture</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div className="pl-20 text-2xl">
-          <Profile />
-        </div>
+     
         <div
           style={{
             display: "flex",
@@ -248,6 +235,7 @@ const Gallery = () => {
             alignContent: "flex-end",
             float: "right",
             marginRight: "3rem",
+            marginBottom: "2rem",
           }}
         >
           <div
@@ -282,16 +270,22 @@ const Gallery = () => {
             <LogoutButton />
           </div>
         </div>
-      </div>
+     
       <div className="flex gap-4 justify-around w-full ">
-        <UploadImage
-          handleImageChange={handleImageChange}
-          handleTextChange={handleTextChange}
-          uploadImage={uploadImage}
-          selectedImage={selectedImage}
-          isLoading={isLoading}
-          handleCancel={handleCancel}
-        />
+        <div>
+          <div className="pl-20 text-2xl text-center">
+            {/* <Profile /> */}
+          </div>
+          <UploadImage
+            handleImageChange={handleImageChange}
+            handleTextChange={handleTextChange}
+            uploadImage={uploadImage}
+            selectedImage={selectedImage}
+            isLoading={isLoading}
+            handleCancel={handleCancel}
+          />
+        </div>
+
         <Display
           images={images}
           handleDelete={handleDelete}
