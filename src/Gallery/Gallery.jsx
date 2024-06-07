@@ -335,14 +335,14 @@ const Gallery = () => {
           <p>Favourite</p>
         </div>
         {/* <Eye size={32} /> */}
-        <div className="p-1 bg-blue-400 rounded-full w-[30%] text-center">
+        {/* <div className="p-1 bg-blue-400 rounded-full w-[30%] text-center">
           <LogoutButton />
-        </div>
+        </div> */}
       </div>
 
       <div className="flex gap-4 justify-around w-full ">
         <div>
-          <div className="pl-20 text-2xl text-center">{/* <Profile /> */}</div>
+          <div className="pl-20 text-2xl text-center"><Profile /></div>
           <UploadImage
             handleImageChange={handleImageChange}
             handleTextChange={handleTextChange}
