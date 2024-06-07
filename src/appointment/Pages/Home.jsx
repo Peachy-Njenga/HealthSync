@@ -4,18 +4,25 @@ import Hero from "../Components/Hero";
 import Info from "../Components/Info";
 import About from "../Components/About";
 import BookAppointment from "../Components/BookAppointment";
+import woman from '../Assets/woman.png';
 
 import AppointmentDetails from "../Components/AppointmentDetails";
 
 function Home() {
   return (
     <div className="home-section">
-      <Navbar />
-      <Hero />
+      <div
+        style={{
+          backgroundImage: `url(${woman})`
+        }}
+        className="  ">
+        <Navbar />
+        <Hero />
+      </div>
       <About />
       <Info />
-      <BookAppointment />
-      <AppointmentDetails />
+      {/* <BookAppointment /> */}
+      {/* <AppointmentDetails /> */}
       {/* <Reviews /> */}
       {/* <Doctors /> */}
       {/*<Footer /> */}

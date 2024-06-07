@@ -28,10 +28,10 @@ function About() {
         </div>
 
         <div className="flex flex-col gap-4">
-          <span className="text-4xl font-bold text-center pb-3">About The Program</span>
+          <span className=" info-title">About The Program</span>
           <p className="text-3xl font-semibold">An Intensive 4 Week Introduction to Web Development</p>
 
-          <p>This is an immersive bootcamp organised by Palladium to empower ladies with various skills in the tech space:</p>
+          <p className="text-gray-700 font-semibold">This is an immersive bootcamp organised by Palladium to empower ladies with various skills in the tech space:</p>
 
           <div className="flex flex-col gap-10 mt-5">
             <div className="flex gap-2 items-center">
@@ -56,16 +56,16 @@ function About() {
         </div>
       </div>
 
-      <div>
+      <div className="pt-10">
         <div className="flex justify-center mt-10">
-          <span className="text-4xl font-bold text-center ">What was covered </span>
+          <span className=" info-title ">What was covered </span>
         </div>
         <div className="embla p-5  " ref={emblaRef}>
-          <div className="embla__container flex gap-10">
-            <img className="embla__slide" src={html} alt="" />
+          <div className="embla__container flex gap-10 items-center">
+            <img className="embla__slide h-12 w-4" src={html} alt="" />
             <img className="embla__slide" src={tailwind} alt="" />
-            <img className="embla__slide" src={js} alt="" />
-            <img className="embla__slide" src={react} alt="" />
+            <img className="embla__slide h-16 w-3" src={js} alt="" />
+            <img className="embla__slide h-16 w-10" src={react} alt="" />
             <img className="embla__slide" src={firebase} alt="" />
             <img className="embla__slide" src={auth0} alt="" />
           </div>
