@@ -45,7 +45,7 @@ function Hero() {
 
         <div className="z-10 h-full flex flex-col items-center ">
           <div className="flex grow flex-col p-1 gap-3 md:gap-6 justify-center items-center  text-center max-w-[1400px] mx-auto">
-            <h1 className="text-3xl md:text-5xl font-bold w-full">
+            <h1 className="text-3xl md:text-5xl font-bold w-full animate-slidein opacity-0 ">
               Empowering women in the tech space
             </h1>
             <a href="#about">
