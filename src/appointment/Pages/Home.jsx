@@ -13,11 +13,17 @@ function Home() {
     <div className="home-section">
       <div
         style={{
-          backgroundImage: `url(${woman})`
+          backgroundImage: `url(${woman})`,
+          backgroundRepeat: `no-repeat`,
+          backgroundSize: `cover`
+
         }}
-        className="  ">
-        <Navbar />
-        <Hero />
+      >
+        <div className="bg-black bg-opacity-60">
+
+          <Navbar />
+          <Hero />
+        </div>
       </div>
       <About />
       <Info />

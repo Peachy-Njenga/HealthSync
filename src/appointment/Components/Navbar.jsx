@@ -36,7 +36,7 @@ function Navbar() {
 
   return (
     <div className="flex h-20 justify-between p-2 items-center">
-      <div className="h-full rounded-full ">
+      <div className="h-full rounded-full bg-white">
         <img src={girlCode} alt="icon" className=" h-full"/>
       </div>
       {/* Desktop */}
