@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
+import girlCode from '../Assets/girl-code.png'
 
 
 function AppointmentForm() {
@@ -87,9 +88,7 @@ function AppointmentForm() {
   return (
     <div className="">
       <div className="p-2">
-        <h1 className="text-3xl text-blue-500 font-semibold">
-          Health <span className="navbar-sign">+</span>
-        </h1>
+        <img src={girlCode} className="size-16" alt="" />
       </div>
 
       <div className="form-container bg-blue-50 w-full flex flex-col">

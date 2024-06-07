@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TaskList from "./components/TaskList"; // Importing the TaskList component
 import { TEInput } from "tw-elements-react";
 import { ListPlus, Search } from "lucide-react";
+import girlCode from './assets/girl-code.png'
 
 const MainApp = () => {
     const [tasks, setTasks] = useState([]);
@@ -102,11 +103,9 @@ const MainApp = () => {
 
     return (
         <div className="h-screen">
-            <div className="flex justify-between p-3 sticky">
-                <h1 className="text-2xl font-semibold">
-                    Health <span className="navbar-sign">+</span>
-                </h1>
-                <div className="flex items-center gap-2 border p-1 w-1/3 rounded-xl border-blue-500">
+            <div className="flex justify-between items-center p-3 sticky">
+                <img src={girlCode} alt="" className="size-16"/>
+                <div className="flex items-center gap-2 border p-1 w-1/3 h-10 rounded-xl border-blue-500">
                     <span><Search size={20} strokeWidth={1.75} /></span>
                     <input
                         type="text"

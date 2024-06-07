@@ -7,6 +7,7 @@ import BookAppointment from "../Components/BookAppointment";
 import woman from '../Assets/woman.png';
 
 import AppointmentDetails from "../Components/AppointmentDetails";
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -31,7 +32,7 @@ function Home() {
       {/* <AppointmentDetails /> */}
       {/* <Reviews /> */}
       {/* <Doctors /> */}
-      {/*<Footer /> */}
+      <Footer />
     </div>
   );
 }
