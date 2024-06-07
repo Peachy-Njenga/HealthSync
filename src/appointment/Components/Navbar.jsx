@@ -36,23 +36,23 @@ function Navbar() {
 
   return (
     <div className="flex h-20 justify-between p-2 items-center">
-      <div className="h-full ">
+      <div className="h-full rounded-full ">
         <img src={girlCode} alt="icon" className=" h-full"/>
       </div>
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="/" className="navbar-links">
+          <Link to="/" className="text-white hover:text-blue-500 hover:border-b-2 transition duration-300 hover:border-blue-500 p-2 ">
             Home
           </Link>
         </li>
         <li>
-          <a href="#about" className="navbar-links">
+          <a href="#about" className="text-white hover:text-blue-500 hover:border-b-2 transition duration-300 hover:border-blue-500 p-2 ">
             About
           </a>
         </li>
         <li>
-          <a href="#projects" className="navbar-links">
+          <a href="#projects" className="text-white hover:text-blue-500 hover:border-b-2 transition duration-300 hover:border-blue-500 p-2 ">
             Projects
           </a>
         </li>
@@ -60,7 +60,7 @@ function Navbar() {
       </ul>
 
       <button
-        className=" bg-blue-500 w-fit h-fit p-3 rounded-lg flex items-center gap-2"
+        className=" bg-blue-500 w-fit h-fit p-3 rounded-2xl flex items-center gap-2 mr-4 border hover:border-blue-500 shadow-md hover:drop-shadow-lg hover:text-blue-500 hover:bg-white hover:scale-105 translate-x-1 transition duration-300  mb-3"
         type="button"
         disabled={isButtonDisabled}
         onClick={handleChatBtnClick}
@@ -68,44 +68,7 @@ function Navbar() {
         <LogIn size={20} strokeWidth={1.75} />Log in
       </button>
 
-      {/* Mobile */}
-      <div className={`mobile-navbar ${nav ? "open-nav" : ""}`}>
-        <div onClick={openNav} className="mobile-navbar-close">
-          <FontAwesomeIcon icon={faXmark} className="hamb-icon" />
-        </div>
-
-        <ul className="mobile-navbar-links">
-          <li>
-            <Link onClick={openNav} to="/">
-              Home
-            </Link>
-          </li>
-          <li>
-            <a onClick={openNav} href="#services">
-              Services
-            </a>
-          </li>
-          <li>
-            <a onClick={openNav} href="#about">
-              About
-            </a>
-          </li>
-          <li>
-            <a onClick={openNav} href="#contact">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      {/* Hamburger Icon */}
-      <div className="mobile-nav">
-        <FontAwesomeIcon
-          icon={faBars}
-          onClick={openNav}
-          className="hamb-icon"
-        />
-      </div>
+     
     </div>
   );
 }
